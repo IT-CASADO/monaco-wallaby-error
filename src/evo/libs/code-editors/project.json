@@ -1,0 +1,69 @@
+{
+	"projectType": "library",
+	"sourceRoot": "libs/code-editors/src",
+	"prefix": "evo",
+	"targets": {
+		"build": {
+			"executor": "@nrwl/angular:ng-packagr-lite",
+			"outputs": ["dist/libs/code-editors"],
+			"options": {
+				"project": "libs/code-editors/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/code-editors/tsconfig.lib.prod.json"
+				},
+				"development": {
+					"tsConfig": "libs/code-editors/tsconfig.lib.json"
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "libs/code-editors/src/test.ts",
+				"tsConfig": "libs/code-editors/tsconfig.spec.json",
+				"karmaConfig": "libs/code-editors/karma.conf.js",
+				"webWorkerTsConfig": "apps/magic-code/tsconfig.worker.json"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": ["libs/code-editors/**/*.ts", "libs/code-editors/**/*.html"]
+			}
+		},
+		"storybook": {
+			"executor": "@storybook/angular:start-storybook",
+			"options": {
+				"port": 4400,
+				"configDir": "libs/code-editors/.storybook",
+				"browserTarget": "code-editors:build-storybook",
+				"compodoc": false
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"build-storybook": {
+			"executor": "@storybook/angular:build-storybook",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputDir": "dist/storybook/code-editors",
+				"configDir": "libs/code-editors/.storybook",
+				"browserTarget": "code-editors:build-storybook",
+				"compodoc": false,
+				"styles": ["libs/code-editors/src/styles/scss/common.scss"]
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		}
+	},
+	"tags": []
+}

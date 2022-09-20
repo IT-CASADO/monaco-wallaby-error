@@ -1,0 +1,17 @@
+{
+	"extends": ["../../.eslintrc.json"],
+	"ignorePatterns": ["!**/*", "**/.antlr/*.*"],
+	"overrides": [
+		{
+			"files": ["*.ts"],
+			"extends": ["../../.eslintrc.angular.json"],
+			"parserOptions": {
+				"project": ["libs/code-editors/tsconfig.*?.json", "libs/code-editors/.storybook/tsconfig.json"]
+			}
+		},
+		{
+			"files": ["*.html"],
+			"extends": ["../../.eslintrc.angular-template.json"]
+		}
+	]
+}

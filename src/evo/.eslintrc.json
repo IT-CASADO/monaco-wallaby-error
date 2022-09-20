@@ -1,0 +1,23 @@
+{
+	"root": true,
+	"ignorePatterns": ["**/*"],
+	"plugins": ["@nrwl/nx"],
+	"overrides": [
+		{
+			"files": ["*.ts"],
+			"extends": [
+				// prettier-ignore
+				"plugin:@nrwl/nx/typescript",
+				".eslintrc.typescript.json"
+			]
+		},
+		{
+			"files": ["*.js"],
+			"extends": [
+				// prettier-ignore
+				"plugin:@nrwl/nx/javascript"
+			],
+			"rules": {}
+		}
+	]
+}

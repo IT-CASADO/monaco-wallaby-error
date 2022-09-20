@@ -1,0 +1,134 @@
+{
+	"$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+	"projectType": "application",
+	"sourceRoot": "apps/magic-code/src",
+	"prefix": "evo",
+	"targets": {
+		"build": {
+			"executor": "@nrwl/angular:webpack-browser",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/apps/magic-code",
+				"index": "apps/magic-code/src/index.html",
+				"main": "apps/magic-code/src/main.ts",
+				"polyfills": "apps/magic-code/src/polyfills.ts",
+				"tsConfig": "apps/magic-code/tsconfig.app.json",
+				"customWebpackConfig": {
+					"path": "apps/magic-code/webpack.config.js"
+				},
+				"inlineStyleLanguage": "scss",
+				"assets": ["apps/magic-code/src/favicon.ico", "apps/magic-code/src/assets"],
+				"styles": [
+					"apps/magic-code/src/styles/scss/styles.scss",
+					"libs/code-editors/src/styles/scss/common.scss"
+				],
+				"scripts": [],
+				"webWorkerTsConfig": "apps/magic-code/tsconfig.worker.json"
+			},
+			"configurations": {
+				"production": {
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "5mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "2kb",
+							"maximumError": "4kb"
+						}
+					],
+					"fileReplacements": [
+						{
+							"replace": "apps/magic-code/src/environments/environment.ts",
+							"with": "apps/magic-code/src/environments/environment.prod.ts"
+						}
+					],
+					"optimization": {
+						"scripts": true,
+						"fonts": true,
+						"styles": {
+							"minify": true,
+							"inlineCritical": false
+						}
+					},
+					"outputHashing": "all"
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@nrwl/angular:webpack-server",
+			"configurations": {
+				"production": {
+					"browserTarget": "magic-code:build:production"
+				},
+				"development": {
+					"browserTarget": "magic-code:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "magic-code:build"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": ["apps/magic-code/**/*.ts", "apps/magic-code/**/*.html"]
+			}
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "apps/magic-code/src/test.ts",
+				"tsConfig": "apps/magic-code/tsconfig.spec.json",
+				"karmaConfig": "apps/magic-code/karma.conf.js",
+				"webWorkerTsConfig": "apps/magic-code/tsconfig.worker.json"
+			}
+		},
+		"storybook": {
+			"executor": "@storybook/angular:start-storybook",
+			"options": {
+				"port": 4400,
+				"configDir": "apps/magic-code/.storybook",
+				"browserTarget": "magic-code:build",
+				"compodoc": false
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"build-storybook": {
+			"executor": "@storybook/angular:build-storybook",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputDir": "dist/storybook/magic-code",
+				"configDir": "apps/magic-code/.storybook",
+				"browserTarget": "magic-code:build",
+				"compodoc": false,
+				"styles": ["apps/magic-code/src/styles/scss/styles.scss"]
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		}
+	},
+	"tags": []
+}

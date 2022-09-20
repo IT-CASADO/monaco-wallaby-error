@@ -1,0 +1,14 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "../../out-tsc/worker",
+		"lib": ["es2018", "webworker"],
+		"types": []
+	},
+	"include": [
+		"src/**/*.worker.ts",
+		"../../libs/code-editors/src/lib/monaco-editor/languages/editor.worker.d.ts",
+		"../../libs/code-editors/src/lib/monaco-editor/languages/query-engine/query-engine.worker.ts",
+		"../../libs/code-editors/src/lib/monaco-editor/languages/task/task.worker.ts"
+	]
+}

@@ -1,0 +1,29 @@
+{
+	"extends": [
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
+		"plugin:@nrwl/nx/angular",
+		"plugin:@angular-eslint/template/process-inline-templates",
+		".eslintrc.typescript.json"
+	],
+	"plugins": ["eslint-plugin-rxjs-angular"],
+	"rules": {
+		// ANGULAR RULES
+		"@angular-eslint/component-selector": [
+			"error",
+			{
+				"type": "element",
+				"prefix": ["evo"],
+				"style": "kebab-case"
+			}
+		],
+		"@angular-eslint/directive-selector": [
+			"error",
+			{
+				"type": "attribute",
+				"prefix": "evo",
+				"style": "camelCase"
+			}
+		],
+		"@angular-eslint/use-component-view-encapsulation": "error"
+	}
+}

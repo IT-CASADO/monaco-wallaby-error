@@ -1,0 +1,17 @@
+{
+	"extends": ["../../.eslintrc.json"],
+	"ignorePatterns": ["!**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts"],
+			"extends": ["../../.eslintrc.angular.json"],
+			"parserOptions": {
+				"project": ["apps/magic-code/tsconfig.*?.json", "apps/magic-code/.storybook/tsconfig.json"]
+			}
+		},
+		{
+			"files": ["*.html"],
+			"extends": ["../../.eslintrc.angular-template.json"]
+		}
+	]
+}
