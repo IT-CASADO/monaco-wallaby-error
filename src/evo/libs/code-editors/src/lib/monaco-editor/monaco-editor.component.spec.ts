@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NGX_MONACO_EDITOR_CONFIG } from './config';
@@ -53,13 +53,19 @@ describe('EvoMonacoEditorComponent without forms', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
-		expect(testHostComponent).toBeTruthy();
-	});
+	it(
+		'should create',
+		waitForAsync(() => {
+			expect(testHostComponent).toBeTruthy();
+		}),
+	);
 
-	it('should initialize internal value with initial value', () => {
-		expect(testHostComponent.editor.value).toEqual(initialValue);
-	});
+	it(
+		'should initialize internal value with initial value',
+		waitForAsync(() => {
+			expect(testHostComponent.editor.value).toEqual(initialValue);
+		}),
+	);
 });
 
 describe('EvoMonacoEditorComponent with forms', () => {
@@ -83,17 +89,26 @@ describe('EvoMonacoEditorComponent with forms', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
-		expect(testFormHostComponent).toBeTruthy();
-	});
+	it(
+		'should create',
+		waitForAsync(() => {
+			expect(testFormHostComponent).toBeTruthy();
+		}),
+	);
 
-	it('should initialize internal value with initial value', () => {
-		expect(testFormHostComponent.editor.value).toEqual(initialValue);
-	});
+	it(
+		'should initialize internal value with initial value',
+		waitForAsync(() => {
+			expect(testFormHostComponent.editor.value).toEqual(initialValue);
+		}),
+	);
 
-	it('should update internal value', () => {
-		testFormHostComponent.formControl.patchValue('let x = 99');
-		fixture.detectChanges();
-		expect(testFormHostComponent.editor.value).toEqual('let x = 99');
-	});
+	it(
+		'should update internal value',
+		waitForAsync(() => {
+			testFormHostComponent.formControl.patchValue('let x = 99');
+			fixture.detectChanges();
+			expect(testFormHostComponent.editor.value).toEqual('let x = 99');
+		}),
+	);
 });
