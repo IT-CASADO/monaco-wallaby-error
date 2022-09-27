@@ -91,12 +91,15 @@
 			}
 		},
 		"test": {
-			"executor": "@angular-devkit/build-angular:karma",
+			"executor": "@angular-builders/custom-webpack:karma",
 			"options": {
 				"main": "apps/magic-code/src/test.ts",
 				"tsConfig": "apps/magic-code/tsconfig.spec.json",
 				"karmaConfig": "apps/magic-code/karma.conf.js",
-				"webWorkerTsConfig": "apps/magic-code/tsconfig.worker.json"
+				"webWorkerTsConfig": "apps/magic-code/tsconfig.worker.json",
+				"customWebpackConfig": {
+					"path": "apps/magic-code/webpack.config.js"
+				}
 			}
 		},
 		"storybook": {
